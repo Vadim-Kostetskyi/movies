@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; bring in normalize.css styles */
 
 body {
   margin: 0;
@@ -12,4 +12,37 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.nav {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid grey;
+}
+
+.nav-link {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.geners {
+  margin-right: 10px;
+}
+
+.movie {
+  display: flex;
+  margin-top: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.movie-img {
+  margin: 25px;
+}
+
+.movie-box {
+  border-bottom: 1px solid grey;
+}
+
+.active {
+  color: red;
 }
