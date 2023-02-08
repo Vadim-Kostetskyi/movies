@@ -1,7 +1,13 @@
 import { getMovieById } from 'constants/dafaultApi';
 import { useEffect, useState, useContext } from 'react';
-import { Link, useParams, Outlet, useNavigate } from 'react-router-dom';
-import Actors from './Actors';
+import {
+  Link,
+  useParams,
+  Outlet,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
+// import Actors from './Actors';
 
 const Movie2 = () => {
   const [title, setTitle] = useState('');
@@ -9,10 +15,13 @@ const Movie2 = () => {
   const [genres, setGenres] = useState([]);
   const [vote_average, setVote_average] = useState([]);
   const [img, setImg] = useState('');
+  const [oldPath, setOldPath] = useState('');
 
   const userScore = parseInt(vote_average) * 10;
 
   const { movieId } = useParams();
+
+  const location = useLocation();
 
   useEffect(() => {
     getMovieById(movieId).then(({ data }) => {
@@ -22,14 +31,13 @@ const Movie2 = () => {
       setVote_average(data.vote_average);
       setImg(data.poster_path);
     });
+    setOldPath(location.state);
   }, []);
 
   let navigate = useNavigate();
-  console.log(navigate);
 
   const goBack = () => {
-    // navigate(`/movies/${movieId}`);
-    navigate(-1);
+    navigate(oldPath);
   };
 
   return (

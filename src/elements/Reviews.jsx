@@ -6,7 +6,6 @@ const { useParams } = require('react-router-dom');
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
-  //   console.log(reviews);
 
   useEffect(() => {
     getReviews(movieId).then(el => setReviews(el.data.results));

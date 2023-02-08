@@ -9,7 +9,6 @@ const Actors = () => {
   useEffect(() => {
     getActors(movieId).then(el => setActors(el.data.cast));
   }, []);
-  //   console.log(actors);
   return (
     <ul>
       {actors.map(({ original_name, character, id, profile_path }) => (
@@ -24,7 +23,7 @@ const Actors = () => {
             width="100px"
           />
           <h2>{original_name}</h2>
-          <p>`Character: {character}`</p>
+          <p>Character: {character}</p>
         </li>
       ))}
     </ul>

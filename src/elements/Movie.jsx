@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-  Outlet,
-  Link,
-  useSearchParams,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { Outlet, Link, useSearchParams, useLocation } from 'react-router-dom';
 import { getMovieByName } from 'constants/dafaultApi';
-
 const Movie = () => {
   const [imageNameInput, setImageNameInput] = useState('');
   const [films, setFilms] = useState([]);
@@ -16,14 +9,16 @@ const Movie = () => {
   const location = useLocation();
   const fromQueryString = location.search.replace(/\?query=/, '');
 
+  // const path = document.location.href.length;
+
   const inputChange = el => {
     const { value } = el.currentTarget;
     setImageNameInput(value.toLowerCase());
   };
 
   useEffect(() => {
-    if (fromQueryString || imageNameInput) {
-      getMovieByName(fromQueryString || imageNameInput).then(el => {
+    if (fromQueryString) {
+      getMovieByName(fromQueryString).then(el => {
         setFilms(el.data.results);
       });
     }
@@ -32,15 +27,13 @@ const Movie = () => {
   const handleSubmit = el => {
     el.preventDefault();
 
-    if (fromQueryString || imageNameInput) {
-      getMovieByName(fromQueryString || imageNameInput).then(el => {
+    if (imageNameInput) {
+      getMovieByName(imageNameInput).then(el => {
         setFilms(el.data.results);
       });
+      setSearchParams({ query: imageNameInput });
+      setImageNameInput('');
     }
-
-    setSearchParams({ query: imageNameInput });
-    setImageNameInput('');
-    console.log(searchParams);
   };
 
   return (
@@ -53,7 +46,12 @@ const Movie = () => {
         <ul>
           {films.map(({ original_title, id }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{original_title}</Link>
+              <Link
+                state={`${location.pathname}${location.search}`}
+                to={`/movies/${id}`}
+              >
+                {original_title}
+              </Link>
             </li>
           ))}
         </ul>

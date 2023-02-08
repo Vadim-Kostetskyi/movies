@@ -1,5 +1,5 @@
-import { lazy, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { getDayMovie } from 'constants/dafaultApi';
 const DayFilm = () => {
   const [movies, setMovies] = useState([]);
@@ -8,6 +8,8 @@ const DayFilm = () => {
     getDayMovie().then(el => setMovies(el.data.results));
   }, []);
 
+  const location = useLocation();
+
   return (
     <div>
       <h1>Trending todey</h1>
@@ -15,7 +17,12 @@ const DayFilm = () => {
         {movies.map(({ id, title }) => {
           return (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link
+                state={`${location.pathname}${location.search}`}
+                to={`/movies/${id}`}
+              >
+                {title}
+              </Link>
             </li>
           );
         })}
@@ -23,14 +30,5 @@ const DayFilm = () => {
     </div>
   );
 };
-// export const Home = () => {
-//   const [movies, setMovies] = useState([]);
-
-//   useEffect(() => {
-//     getDayMovie().then(setMovies);
-//   }, []);
-//   console.log(movies);
-//   return <div>123123132</div>;
-// };
 
 export default DayFilm;
