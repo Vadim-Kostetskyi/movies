@@ -1,5 +1,5 @@
 import { getMovieById } from 'constants/dafaultApi';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Link,
   useParams,
@@ -16,6 +16,7 @@ const Movie2 = () => {
   const [vote_average, setVote_average] = useState([]);
   const [img, setImg] = useState('');
   const [oldPath, setOldPath] = useState('');
+  const [date, setDate] = useState(0);
 
   const userScore = parseInt(vote_average) * 10;
 
@@ -25,6 +26,7 @@ const Movie2 = () => {
 
   useEffect(() => {
     getMovieById(movieId).then(({ data }) => {
+      setDate(data.release_date.slice(0, 4));
       setTitle(data.title);
       setOverview(data.overview);
       setGenres(data.genres);
@@ -51,7 +53,9 @@ const Movie2 = () => {
           width="200px"
         />
         <div>
-          <h1>{title}</h1>
+          <h1>
+            {title} ({date})
+          </h1>
           <p>User Score {userScore}%</p>
           <h2>Overview</h2>
           <p>{overview}</p>
