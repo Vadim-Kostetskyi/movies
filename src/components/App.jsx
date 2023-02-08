@@ -1,13 +1,16 @@
 import { Routes, Route, Outlet } from 'react-router-dom';
-// import { NavLink, Route, Routes } from 'react-router-dom';
-// import { PATHS } from 'constants';
 import { Header } from 'elements/Header';
 import DayFilm from 'elements/DayFilm';
-import { Suspense } from 'react';
-import Movie2 from 'elements/Movie2';
-import Movie from 'elements/Movie';
-import Actors from 'elements/Actors';
-import Reviews from 'elements/Reviews';
+import { Suspense, lazy } from 'react';
+// import Movie2 from 'elements/Movie2';
+// import Movie from 'elements/Movie';
+// import Actors from 'elements/Actors';
+// import Reviews from 'elements/Reviews';
+
+const Movie = lazy(() => import('elements/Movie'));
+const Actors = lazy(() => import('elements/Actors'));
+const Reviews = lazy(() => import('elements/Reviews'));
+const Movie2 = lazy(() => import('elements/Movie2'));
 
 export const App = () => {
   return (
