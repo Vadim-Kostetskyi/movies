@@ -1,5 +1,11 @@
-import { useState } from 'react';
-import { Outlet, Link, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  Outlet,
+  Link,
+  useSearchParams,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 import { getMovieByName } from 'constants/dafaultApi';
 
 const Movie = () => {
@@ -7,22 +13,34 @@ const Movie = () => {
   const [films, setFilms] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // console.log(searchParams);
+  const location = useLocation();
+  const fromQueryString = location.search.replace(/\?query=/, '');
 
   const inputChange = el => {
     const { value } = el.currentTarget;
     setImageNameInput(value.toLowerCase());
   };
 
+  useEffect(() => {
+    if (fromQueryString || imageNameInput) {
+      getMovieByName(fromQueryString || imageNameInput).then(el => {
+        setFilms(el.data.results);
+      });
+    }
+  }, []);
+
   const handleSubmit = el => {
     el.preventDefault();
-    console.log(films);
 
-    getMovieByName(imageNameInput).then(el => {
-      setFilms(el.data.results);
-    });
+    if (fromQueryString || imageNameInput) {
+      getMovieByName(fromQueryString || imageNameInput).then(el => {
+        setFilms(el.data.results);
+      });
+    }
+
     setSearchParams({ query: imageNameInput });
     setImageNameInput('');
+    console.log(searchParams);
   };
 
   return (

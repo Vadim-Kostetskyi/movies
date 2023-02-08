@@ -15,7 +15,11 @@ const Actors = () => {
       {actors.map(({ original_name, character, id, profile_path }) => (
         <li key={id}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+            src={
+              profile_path
+                ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                : ''
+            }
             alt={original_name}
             width="100px"
           />

@@ -4,11 +4,11 @@ import { Link, useParams, Outlet, useNavigate } from 'react-router-dom';
 import Actors from './Actors';
 
 const Movie2 = () => {
-  const [title, setTitle] = useState([]);
-  const [overview, setOverview] = useState([]);
+  const [title, setTitle] = useState('');
+  const [overview, setOverview] = useState('');
   const [genres, setGenres] = useState([]);
   const [vote_average, setVote_average] = useState([]);
-  const [img, setImg] = useState([]);
+  const [img, setImg] = useState('');
 
   const userScore = parseInt(vote_average) * 10;
 
@@ -25,8 +25,10 @@ const Movie2 = () => {
   }, []);
 
   let navigate = useNavigate();
+  console.log(navigate);
 
   const goBack = () => {
+    // navigate(`/movies/${movieId}`);
     navigate(-1);
   };
 
@@ -36,7 +38,7 @@ const Movie2 = () => {
       <div className="movie">
         <img
           className="movie-img"
-          src={`https://image.tmdb.org/t/p/w500/${img}`}
+          src={img ? `https://image.tmdb.org/t/p/w500/${img}` : ''}
           alt={title}
           width="200px"
         />
