@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/css/main.7acaea2f.css",
-    "main.js": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/js/main.07d3183d.js",
+    "main.css": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/css/main.f8e88541.css",
+    "main.js": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/js/main.49c4bbcc.js",
     "index.html": "/Vadim-Kostetskyi/goit-react-hw-05-movies/index.html",
-    "main.7acaea2f.css.map": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/js/main.07d3183d.js.map"
+    "main.f8e88541.css.map": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/css/main.f8e88541.css.map",
+    "main.49c4bbcc.js.map": "/Vadim-Kostetskyi/goit-react-hw-05-movies/static/js/main.49c4bbcc.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/css/main.f8e88541.css",
+    "static/js/main.49c4bbcc.js"
   ]
 }
