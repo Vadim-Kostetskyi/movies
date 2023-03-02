@@ -5,10 +5,10 @@ export const Header = () => {
     <div>
       <nav className="nav">
         <NavLink className="nav-link" to="/">
-          Home
+          DayFilms
         </NavLink>
         <NavLink className="nav-link" to="/movies">
-          Movies
+          Search movie
         </NavLink>
       </nav>
       <Outlet />

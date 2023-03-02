@@ -6,16 +6,11 @@ const API_KEY = '169f25cf5fe3e465b78878af422f41bc';
 
 const instance = axios.create({
   baseURL: BASE_URL,
-  //   headers: { 'Content-Type': 'application/json' },
 });
 
 export const getDayMovie = () => {
   return instance.get(`trending/movie/day?api_key=${API_KEY}`);
 };
-
-// export const getMovieByName = name => {
-//   return instance.get(`search/movie?api_key=${API_KEY}&query=${name}`);
-// };
 
 export const getMovieById = id => {
   return instance.get(`movie/${id}?api_key=${API_KEY}&language=en-US`);

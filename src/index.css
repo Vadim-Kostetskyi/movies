@@ -7,11 +7,60 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+.day-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.day-list-item {
+  width: 300px;
+}
+
+.day-link {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.img-box {
+  width: 300px;
+}
+
+.img-box :hover {
+  margin: 0 5px;
+  transform: scale(1.05);
+}
+
+.img {
+  width: 300px;
+}
+
+.day-text {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  margin-top: 10px;
 }
 
 .nav {
