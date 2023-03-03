@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
+  color: white;
 }
 
 code {
@@ -25,6 +26,25 @@ a {
 
 img {
   display: block;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  font-size: 20px;
+  width: 300px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  margin: 15px;
+  border-radius: 25px;
+
+  color: #2db2ff;
+  background-color: #350048;
 }
 
 .day-list {
@@ -72,6 +92,26 @@ img {
 .nav-link {
   margin-right: 10px;
   margin-left: 10px;
+  color: white;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  /* color: red; */
+  border: none;
+  border-radius: 25%;
+  text-shadow:
+    /* белый свет */ 0 0 1px #fff, 0 0 2px #fff, 0 0 5px #fff,
+    /* зеленый свет */ 0 0 11px #0fa, 0 0 20px #0fa, 0 0 30px #0fa,
+    0 0 55px #0fa, 0 0 80px #0fa;
+}
+
+.active {
+  color: yellow;
+  text-shadow:
+    /* белый свет */ 0 0 1px #fff, 0 0 2px #fff, 0 0 5px #fff,
+    /* зеленый свет */ 0 0 11px #0fa, 0 0 20px #0fa, 0 0 30px #0fa,
+    0 0 55px #0fa, 0 0 80px #0fa;
 }
 
 .geners {
@@ -90,8 +130,4 @@ img {
 
 .movie-box {
   border-bottom: 1px solid grey;
-}
-
-.active {
-  color: red;
 }

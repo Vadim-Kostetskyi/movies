@@ -39,7 +39,12 @@ const Movie = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={inputChange} value={imageNameInput} />
+        <input
+          type="text"
+          onChange={inputChange}
+          value={imageNameInput}
+          placeholder="Search"
+        />
         <button type="submit">Search</button>
       </form>
       {films.length > 0 && (
