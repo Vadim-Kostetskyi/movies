@@ -47,7 +47,7 @@ const Movie2 = () => {
       <button onClick={goBack}>Go back</button>
       <div className="movie">
         <img
-          className="movie-img"
+          className="movie-img img"
           src={img ? `https://image.tmdb.org/t/p/w500/${img}` : ''}
           alt={title}
           width="200px"

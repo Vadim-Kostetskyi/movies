@@ -33,18 +33,134 @@ form {
   justify-content: center;
 }
 
-input {
-  font-size: 20px;
+.smoll {
+  width: 10px;
+  transition: 0.78s;
+}
+
+.box {
+  display: flex;
+  margin-top: 25px;
+
+  background: #fff;
+  height: 20px;
+  border-radius: 30px;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.8s;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.78s;
+}
+
+.input-box {
+  display: flex;
+  margin-top: 25px;
+
+  background: #fff;
+  height: 20px;
+  border-radius: 30px;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.8s;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.78s;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  outline: none;
+  /* width: 0px; */
+  font-weight: 500;
+  font-size: 16px;
+  /* transition: 0.8s; */
+}
+
+.input-box .input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 0px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.8s;
+  /* font-size: 20px;
   width: 300px;
   height: 40px;
   padding-left: 15px;
   padding-right: 15px;
 
   margin: 15px;
-  border-radius: 25px;
+  border-radius: 15px;
 
-  color: #2db2ff;
-  background-color: #350048;
+  color: #ffe600;
+  background-color: #4307cf; */
+}
+
+.input-box:hover > .input {
+  width: 400px;
+}
+
+/* @keyframes hoverShake {
+  0% {
+    transform: skew(0deg, 0deg);
+  }
+  25% {
+    transform: skew(5deg, 5deg);
+  }
+  75% {
+    transform: skew(-5deg, -5deg);
+  }
+  100% {
+    transform: skew(0deg, 0deg);
+  }
+} */
+
+.input-box:hover {
+  transition: 0.78s;
+  /* animation: hoverShake 0.15s linear 3; */
+}
+
+.search-btn {
+  position: relative;
+  /* left: -55px; */
+  height: 40px;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: none;
+  background: none;
+  /* background-color: #4307cf;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2); */
+}
+
+.search-btn:hover {
+  box-shadow: inset 0px 0px 13px 0px rgba(255, 255, 255, 1);
+}
+
+.search-img {
+  width: 15px;
 }
 
 .day-list {

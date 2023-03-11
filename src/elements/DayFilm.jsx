@@ -7,12 +7,11 @@ const DayFilm = () => {
   useEffect(() => {
     getDayMovie().then(el => {
       setMovies(el.data.results);
-      console.log(el.data.results);
+      // console.log(el.data.results);
     });
   }, []);
 
   const location = useLocation();
-  console.log(location);
 
   return (
     <div>
