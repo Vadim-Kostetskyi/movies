@@ -48,6 +48,15 @@ const Movie = () => {
     }
   };
 
+  function moveImage(el) {
+    el.preventDefault();
+    console.log(el.target);
+    // el.target.style.transform = 'translate(-100%, -100%)';
+    el.target.classList.add('move-to-top-left');
+    // image.pageX = '0';
+    // image.style.left = '0';
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -69,6 +78,7 @@ const Movie = () => {
           {films.map(({ original_title, id, poster_path }) => (
             <li key={id} className="day-list-item">
               <Link
+                onClick={moveImage}
                 className="day-link"
                 state={`${location.pathname}${location.search}`}
                 to={`/movies/${id}`}

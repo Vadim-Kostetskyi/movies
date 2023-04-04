@@ -26,6 +26,8 @@ a {
 
 img {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form {
@@ -174,7 +176,8 @@ form {
 }
 
 .day-link {
-  position: relative;
+  /* position: relative; */
+  height: 600px;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -183,20 +186,34 @@ form {
   width: 300px;
 }
 
-.img-box :hover {
-  margin: 0 5px;
+.img-link :hover {
+  /* margin: 0 5px; */
   transform: scale(1.05);
+}
+
+.move-to-top-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: transform 5s ease-in-out;
 }
 
 .img {
   width: 300px;
+  transition: all 5s ease-in-out;
+  /* position: absolute;
+  top: 0;
+  left: 0; */
 }
 
 .day-text {
   text-align: center;
   color: white;
   font-size: 25px;
-  margin-top: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid rgb(107, 103, 103);
+  border-left: 1px solid rgb(107, 103, 103);
+  border-right: 1px solid rgb(107, 103, 103);
 }
 
 .nav {
