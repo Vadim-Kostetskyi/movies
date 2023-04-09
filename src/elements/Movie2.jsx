@@ -1,5 +1,5 @@
 import { getMovieById } from 'constants/dafaultApi';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import {
   Link,
   useParams,
@@ -24,7 +24,7 @@ const Movie2 = () => {
 
   const location = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getMovieById(movieId).then(({ data }) => {
       setDate(data.release_date.slice(0, 4));
       setTitle(data.title);

@@ -1,5 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
-import { Outlet, Link, useSearchParams, useLocation } from 'react-router-dom';
+import {
+  Outlet,
+  Link,
+  useSearchParams,
+  useLocation,
+  // navigate,
+} from 'react-router-dom';
 import { getMovieByName } from 'constants/dafaultApi';
 import lupa from './lupa.png';
 
@@ -48,13 +54,65 @@ const Movie = () => {
     }
   };
 
-  function moveImage(el) {
+  async function moveImage(el) {
     el.preventDefault();
-    console.log(el.target);
-    // el.target.style.transform = 'translate(-100%, -100%)';
-    el.target.classList.add('move-to-top-left');
-    // image.pageX = '0';
-    // image.style.left = '0';
+    // console.log(el.target.offsetTop);
+    // console.log(el.target.offsetLeft);
+    // console.log(window.innerHeight);
+    console.log(el.currentTarget.href);
+    // const nextUrl = el.currentTarget.href;
+    // const response = await fetch(nextUrl);
+    // console.log(response.text());
+    // const html = await response.text();
+    // console.log(response.url);
+    // const prefetchNextPage = usePrefetch('/next-page');
+
+    const top = el.target.offsetTop;
+    const left = el.target.offsetLeft;
+    const rect = el.target.getBoundingClientRect();
+    const topOffset = 108.6 - rect.top;
+    const leftOffset = 30 - rect.left;
+
+    document.body.style.overflow = 'hidden';
+
+    el.target.style.position = 'relative';
+
+    // el.target.style.transform = `translateY(${topOffset}px)`;
+    // el.target.style.transform = `translateX(${leftOffset}px)`;
+    el.target.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
+
+    // el.target.style.transform = `translateX(calc(100vw-${left}px))`;
+
+    // console.log('top:', rect.top);
+    //   console.log('left:', rect.left);
+    //   console.log('bottom:', rect.bottom);
+    //   console.log('right:', rect.right);
+    //   console.log('width:', rect.width);
+    //   console.log('height:', rect.height);
+    // setTimeout(() => {
+    //   window.location.href = e.currentTarget.href;
+    // }, 500); // перехід через 500 мс
+    setTimeout(() => {
+      // window.location.href = el.currentTarget.getAttribute('to');
+      // window.location.href = response.url;
+      // document.querySelector('html').innerHTML = html;
+    }, 1000);
+    const nextUrl = el.currentTarget.href;
+
+    // Попереднє завантаження сторінки за допомогою fetch
+    const response = await fetch(nextUrl);
+    //   setTimeout(() => {
+    //     console.log(data);
+    //     console.log(nextUrl);
+    //   }, 1000);
+    // });
+    const html = await response.text();
+    await new Promise(resolve =>
+      setTimeout(() => {
+        resolve();
+      }, 1000)
+    );
+    window.location.href = response.url;
   }
 
   return (
@@ -81,6 +139,8 @@ const Movie = () => {
                 onClick={moveImage}
                 className="day-link"
                 state={`${location.pathname}${location.search}`}
+                rel="prefetch"
+                href={`/movies/${id}`}
                 to={`/movies/${id}`}
               >
                 <span className="day-text">{original_title}</span>

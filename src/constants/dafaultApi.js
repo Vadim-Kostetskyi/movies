@@ -4,7 +4,7 @@ import { App } from 'components/App';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '169f25cf5fe3e465b78878af422f41bc';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: BASE_URL,
 });
 

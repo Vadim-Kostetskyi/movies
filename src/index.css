@@ -200,10 +200,7 @@ form {
 
 .img {
   width: 300px;
-  transition: all 5s ease-in-out;
-  /* position: absolute;
-  top: 0;
-  left: 0; */
+  transition: all 1s ease-in-out;
 }
 
 .day-text {
