@@ -19,7 +19,7 @@ const DayFilm = () => {
     const imgElement = el.currentTarget.querySelector('img');
     const imgBox =
       el.currentTarget.getElementsByClassName('img-box-backdrop')[0];
-    // console.log(imgBox);
+    console.log(imgBox);
 
     const rect = el.currentTarget.getBoundingClientRect();
     const topOffset = 108.6 - rect.top;
@@ -31,11 +31,10 @@ const DayFilm = () => {
     imgElement.style.zIndex = '5';
     imgBox.classList.add('backdrop');
 
-    el.currentTarget.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
+    imgElement.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
 
     const nextUrl = el.currentTarget.href;
 
-    // Попереднє завантаження сторінки за допомогою fetch
     const response = await fetch(nextUrl);
     const html = await response.text();
     await new Promise(resolve =>
@@ -57,6 +56,8 @@ const DayFilm = () => {
                 onClick={moveImage}
                 className="day-link"
                 state={`${location.pathname}${location.search}`}
+                rel="prefetch"
+                href={`/movies/${id}`}
                 to={`/movies/${id}`}
               >
                 <div className="img-box">
@@ -64,7 +65,6 @@ const DayFilm = () => {
                     {vote_average.toFixed(1)}
                   </div>
                   <div className="img-box-backdrop"></div>
-
                   <img
                     className="img"
                     src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
