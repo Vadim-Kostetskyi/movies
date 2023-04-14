@@ -7,7 +7,7 @@ const DayFilm = () => {
   useEffect(() => {
     getDayMovie().then(el => {
       setMovies(el.data.results);
-      // console.log(el.data.results);
+      console.log(el.data.results);
     });
   }, []);
 
@@ -16,7 +16,10 @@ const DayFilm = () => {
   async function moveImage(el) {
     el.preventDefault();
 
-    console.log(el.currentTarget.href);
+    const imgElement = el.currentTarget.querySelector('img');
+    const imgBox =
+      el.currentTarget.getElementsByClassName('img-box-backdrop')[0];
+    // console.log(imgBox);
 
     const rect = el.currentTarget.getBoundingClientRect();
     const topOffset = 108.6 - rect.top;
@@ -24,7 +27,9 @@ const DayFilm = () => {
 
     document.body.style.overflow = 'hidden';
 
-    el.currentTarget.style.position = 'relative';
+    imgElement.style.position = 'relative';
+    imgElement.style.zIndex = '5';
+    imgBox.classList.add('backdrop');
 
     el.currentTarget.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
 
@@ -45,24 +50,28 @@ const DayFilm = () => {
     <div>
       <h1>Trending todey</h1>
       <ul className="day-list">
-        {movies.map(({ id, title, poster_path }) => {
+        {movies.map(({ id, title, poster_path, vote_average }) => {
           return (
             <li className="day-list-item" key={id}>
               <Link
                 onClick={moveImage}
                 className="day-link"
-                state={`${location.pathname}${location.search}sfsfsdfsdf`}
+                state={`${location.pathname}${location.search}`}
                 to={`/movies/${id}`}
               >
-                <span className="day-text">{title}</span>
-
                 <div className="img-box">
+                  <div className="day-list-vote_average">
+                    {vote_average.toFixed(1)}
+                  </div>
+                  <div className="img-box-backdrop"></div>
+
                   <img
                     className="img"
                     src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                     alt=""
                   />
                 </div>
+                <span className="day-text">{title}</span>
               </Link>
             </li>
           );

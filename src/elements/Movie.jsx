@@ -32,6 +32,7 @@ const Movie = () => {
   useEffect(() => {
     if (fromQueryString) {
       getMovieByName(fromQueryString).then(el => {
+        console.log(el.data);
         setFilms(el.data.results);
       });
     }
@@ -58,7 +59,10 @@ const Movie = () => {
     console.log(el.currentTarget);
     el.preventDefault();
 
-    console.log(el.currentTarget.href);
+    const imgElement = el.currentTarget.querySelector('img');
+    const imgBox =
+      el.currentTarget.getElementsByClassName('img-box-backdrop')[0];
+    // console.log(imgBox);
 
     const rect = el.currentTarget.getBoundingClientRect();
     const topOffset = 108.6 - rect.top;
@@ -66,21 +70,22 @@ const Movie = () => {
 
     document.body.style.overflow = 'hidden';
 
-    el.currentTarget.style.position = 'relative';
+    imgElement.style.position = 'relative';
+    imgElement.style.zIndex = '5';
+    imgBox.classList.add('backdrop');
 
-    el.currentTarget.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
-
+    imgElement.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
+    // Попереднє завантаження сторінки за допомогою fetch
     const nextUrl = el.currentTarget.href;
 
-    // Попереднє завантаження сторінки за допомогою fetch
-    // const response = await fetch(nextUrl);
-    // const html = await response.text();
-    // await new Promise(resolve =>
-    //   setTimeout(() => {
-    //     resolve();
-    //   }, 1000)
-    // );
-    // window.location.href = response.url;
+    const response = await fetch(nextUrl);
+    const html = await response.text();
+    await new Promise(resolve =>
+      setTimeout(() => {
+        resolve();
+      }, 1000)
+    );
+    window.location.href = response.url;
   }
 
   return (
@@ -101,7 +106,7 @@ const Movie = () => {
       </form>
       {films.length > 0 && (
         <ul className="day-list">
-          {films.map(({ original_title, id, poster_path }) => (
+          {films.map(({ original_title, id, poster_path, vote_average }) => (
             <li key={id} className="day-list-item">
               <Link
                 onClick={moveImage}
@@ -111,14 +116,18 @@ const Movie = () => {
                 href={`/movies/${id}`}
                 to={`/movies/${id}`}
               >
-                <span className="day-text">{original_title}</span>
                 <div className="img-box">
+                  <div className="day-list-vote_average">
+                    {vote_average.toFixed(1)}
+                  </div>
+                  <div className="img-box-backdrop"></div>
                   <img
                     className="img"
                     src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                     alt=""
                   />
                 </div>
+                <span className="day-text">{original_title}</span>
               </Link>
             </li>
           ))}
