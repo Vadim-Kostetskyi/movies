@@ -55,64 +55,32 @@ const Movie = () => {
   };
 
   async function moveImage(el) {
+    console.log(el.currentTarget);
     el.preventDefault();
-    // console.log(el.target.offsetTop);
-    // console.log(el.target.offsetLeft);
-    // console.log(window.innerHeight);
-    console.log(el.currentTarget.href);
-    // const nextUrl = el.currentTarget.href;
-    // const response = await fetch(nextUrl);
-    // console.log(response.text());
-    // const html = await response.text();
-    // console.log(response.url);
-    // const prefetchNextPage = usePrefetch('/next-page');
 
-    const top = el.target.offsetTop;
-    const left = el.target.offsetLeft;
-    const rect = el.target.getBoundingClientRect();
+    console.log(el.currentTarget.href);
+
+    const rect = el.currentTarget.getBoundingClientRect();
     const topOffset = 108.6 - rect.top;
     const leftOffset = 30 - rect.left;
 
     document.body.style.overflow = 'hidden';
 
-    el.target.style.position = 'relative';
+    el.currentTarget.style.position = 'relative';
 
-    // el.target.style.transform = `translateY(${topOffset}px)`;
-    // el.target.style.transform = `translateX(${leftOffset}px)`;
-    el.target.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
+    el.currentTarget.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
 
-    // el.target.style.transform = `translateX(calc(100vw-${left}px))`;
-
-    // console.log('top:', rect.top);
-    //   console.log('left:', rect.left);
-    //   console.log('bottom:', rect.bottom);
-    //   console.log('right:', rect.right);
-    //   console.log('width:', rect.width);
-    //   console.log('height:', rect.height);
-    // setTimeout(() => {
-    //   window.location.href = e.currentTarget.href;
-    // }, 500); // перехід через 500 мс
-    setTimeout(() => {
-      // window.location.href = el.currentTarget.getAttribute('to');
-      // window.location.href = response.url;
-      // document.querySelector('html').innerHTML = html;
-    }, 1000);
     const nextUrl = el.currentTarget.href;
 
     // Попереднє завантаження сторінки за допомогою fetch
-    const response = await fetch(nextUrl);
+    // const response = await fetch(nextUrl);
+    // const html = await response.text();
+    // await new Promise(resolve =>
     //   setTimeout(() => {
-    //     console.log(data);
-    //     console.log(nextUrl);
-    //   }, 1000);
-    // });
-    const html = await response.text();
-    await new Promise(resolve =>
-      setTimeout(() => {
-        resolve();
-      }, 1000)
-    );
-    window.location.href = response.url;
+    //     resolve();
+    //   }, 1000)
+    // );
+    // window.location.href = response.url;
   }
 
   return (

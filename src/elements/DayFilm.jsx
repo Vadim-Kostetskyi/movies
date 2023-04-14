@@ -13,6 +13,34 @@ const DayFilm = () => {
 
   const location = useLocation();
 
+  async function moveImage(el) {
+    el.preventDefault();
+
+    console.log(el.currentTarget.href);
+
+    const rect = el.currentTarget.getBoundingClientRect();
+    const topOffset = 108.6 - rect.top;
+    const leftOffset = 30 - rect.left;
+
+    document.body.style.overflow = 'hidden';
+
+    el.currentTarget.style.position = 'relative';
+
+    el.currentTarget.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
+
+    const nextUrl = el.currentTarget.href;
+
+    // Попереднє завантаження сторінки за допомогою fetch
+    const response = await fetch(nextUrl);
+    const html = await response.text();
+    await new Promise(resolve =>
+      setTimeout(() => {
+        resolve();
+      }, 1000)
+    );
+    window.location.href = response.url;
+  }
+
   return (
     <div>
       <h1>Trending todey</h1>
@@ -21,6 +49,7 @@ const DayFilm = () => {
           return (
             <li className="day-list-item" key={id}>
               <Link
+                onClick={moveImage}
                 className="day-link"
                 state={`${location.pathname}${location.search}sfsfsdfsdf`}
                 to={`/movies/${id}`}

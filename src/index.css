@@ -177,9 +177,10 @@ form {
 
 .day-link {
   /* position: relative; */
-  height: 600px;
+  /* height: 600px; */
   display: flex;
   flex-direction: column-reverse;
+  transition: all 1s ease-in-out;
 }
 
 .img-box {
@@ -251,6 +252,7 @@ form {
 .movie {
   display: flex;
   margin-top: 10px;
+  min-height: 489.8px;
   border-bottom: 1px solid grey;
 }
 
