@@ -1,0 +1,77 @@
+.input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.box {
+  display: flex;
+  margin-top: 25px;
+  height: 20px;
+  border-radius: 30px;
+  padding: 10px 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.78s;
+}
+
+.inputBox .input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 0px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.8s;
+  /* font-size: 20px;
+  width: 300px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  margin: 15px;
+  border-radius: 15px;
+
+  color: #ffe600;
+  background-color: #4307cf; */
+}
+
+.inputBox:hover > .input,
+.inputBox:focus-within > .input,
+.inputBox:focus > .input,
+.inputBox > .input:active,
+.inputBox > .input:not(:placeholder-shown) {
+  width: 195px;
+}
+
+.inputBox:hover,
+.inputBox:focus {
+  transition: 0.78s;
+}
+
+.searchBtn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 10px 15px 12px 10px;
+  border: none;
+  background: none;
+}
+
+.searchBtn:hover {
+  box-shadow: inset 0px 0px 13px 0px rgba(255, 255, 255, 1);
+}
+
+.searchImg {
+  width: 15px;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getActors } from 'constants/dafaultApi';
+import { getActors } from 'API/dafaultApi';
+import { PathToImage } from 'API';
 
 const Actors = () => {
   const [actors, setActors] = useState([]);
@@ -9,18 +10,14 @@ const Actors = () => {
   useEffect(() => {
     getActors(movieId).then(el => setActors(el.data.cast));
   }, []);
+
   return (
     <ul>
       {actors.map(({ original_name, character, id, profile_path }) => (
         <li key={id}>
           <img
-            src={
-              profile_path
-                ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                : ''
-            }
+            src={profile_path ? PathToImage(profile_path) : ''}
             alt={original_name}
-            width="100px"
           />
           <h2>{original_name}</h2>
           <p>Character: {character}</p>

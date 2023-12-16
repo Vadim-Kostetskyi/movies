@@ -1,4 +1,4 @@
-import { getMovieById } from 'constants/dafaultApi';
+import { getMovieById } from 'API/dafaultApi';
 import { useLayoutEffect, useState } from 'react';
 import {
   Link,
@@ -7,9 +7,10 @@ import {
   useNavigate,
   useLocation,
 } from 'react-router-dom';
-// import Actors from './Actors';
+import { PathById, PathToImage } from 'API';
+import styles from './index.module.css';
 
-const Movie2 = () => {
+const MovieInfo = () => {
   const [title, setTitle] = useState('');
   const [overview, setOverview] = useState('');
   const [genres, setGenres] = useState([]);
@@ -19,9 +20,7 @@ const Movie2 = () => {
   const [date, setDate] = useState(0);
 
   const userScore = parseInt(vote_average) * 10;
-
   const { movieId } = useParams();
-
   const location = useLocation();
 
   useLayoutEffect(() => {
@@ -33,24 +32,25 @@ const Movie2 = () => {
       setVote_average(data.vote_average);
       setImg(data.poster_path);
     });
-    setOldPath(location.state);
+    setOldPath(location.pathname);
   }, []);
 
   let navigate = useNavigate();
 
   const goBack = () => {
+    console.log(123);
+    console.log(location);
     navigate(oldPath);
   };
 
   return (
     <>
       <button onClick={goBack}>Go back</button>
-      <div className="movie">
+      <div className={styles.movie}>
         <img
-          className="movie-img img"
-          src={img ? `https://image.tmdb.org/t/p/w500/${img}` : ''}
+          className={styles.movieImg}
+          src={img ? PathToImage(img) : ''}
           alt={title}
-          width="200px"
         />
         <div>
           <h1>
@@ -62,21 +62,21 @@ const Movie2 = () => {
           <h3>Genres</h3>
           <p>
             {genres.map(el => (
-              <span className="geners" key={el.id}>
+              <span className={styles.geners} key={el.id}>
                 {el.name}
               </span>
             ))}
           </p>
         </div>
       </div>
-      <div className="movie-box">
+      <div className={styles.movieBox}>
         <p>Additional Information</p>
         <ul>
           <li>
-            <Link to={`/movies/${movieId}/cast`}>Cast</Link>
+            <Link to={PathById(movieId).actors}>Cast</Link>
           </li>
           <li>
-            <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+            <Link to={PathById(movieId).reviews}>Reviews</Link>
           </li>
         </ul>
       </div>
@@ -85,4 +85,4 @@ const Movie2 = () => {
   );
 };
 
-export default Movie2;
+export default MovieInfo;

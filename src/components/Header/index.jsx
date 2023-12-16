@@ -1,13 +1,15 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { Path } from 'API';
+import styles from './index.module.css';
 
 export const Header = () => {
   return (
     <div>
-      <nav className="nav">
-        <NavLink className="nav-link" to="/">
+      <nav className={styles.box}>
+        <NavLink className={styles.link} to={Path.home}>
           DayFilms
         </NavLink>
-        <NavLink className="nav-link" to="/movies">
+        <NavLink className={styles.link} to={Path.searchMovie}>
           Search movie
         </NavLink>
       </nav>

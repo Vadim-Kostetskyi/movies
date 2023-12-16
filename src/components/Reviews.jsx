@@ -1,7 +1,6 @@
-import { getReviews } from 'constants/dafaultApi';
-
-const { useEffect, useState } = require('react');
-const { useParams } = require('react-router-dom');
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getReviews } from 'API/dafaultApi';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -22,7 +21,9 @@ const Reviews = () => {
           ))}
         </ul>
       )}
-      {reviews.length === 0 && <p>We don`t have any reviews for this movie</p>}{' '}
+      {reviews.length === 0 ? (
+        <p>We don`t have any reviews for this movie</p>
+      ) : null}
     </>
   );
 };

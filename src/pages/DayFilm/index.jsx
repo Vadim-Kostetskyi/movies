@@ -1,42 +1,38 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getDayMovie } from 'constants/dafaultApi';
+import { getDayMovie } from 'API/dafaultApi';
+import MovieCard from 'components/MovieCard';
+import styles from './index.module.css';
+
 const DayFilm = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     getDayMovie().then(el => {
       setMovies(el.data.results);
-      console.log(el.data.results);
     });
   }, []);
 
-  const location = useLocation();
+  const { pathname, search } = useLocation();
 
   async function moveImage(el) {
     el.preventDefault();
 
     const imgElement = el.currentTarget.querySelector('img');
     const imgBox =
-      el.currentTarget.getElementsByClassName('img-box-backdrop')[0];
-    console.log(imgBox);
-
+      el.currentTarget.getElementsByClassName('image-box-backdrop')[0];
     const rect = el.currentTarget.getBoundingClientRect();
     const topOffset = 108.6 - rect.top;
     const leftOffset = 30 - rect.left;
 
     document.body.style.overflow = 'hidden';
-
     imgElement.style.position = 'relative';
     imgElement.style.zIndex = '5';
     imgBox.classList.add('backdrop');
-
     imgElement.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
 
     const nextUrl = el.currentTarget.href;
-
     const response = await fetch(nextUrl);
-    const html = await response.text();
     await new Promise(resolve =>
       setTimeout(() => {
         resolve();
@@ -48,31 +44,19 @@ const DayFilm = () => {
   return (
     <div>
       <h1>Trending todey</h1>
-      <ul className="day-list">
+      <ul className={styles.list}>
         {movies.map(({ id, title, poster_path, vote_average }) => {
           return (
-            <li className="day-list-item" key={id}>
-              <Link
-                onClick={moveImage}
-                className="day-link"
-                state={`${location.pathname}${location.search}`}
-                rel="prefetch"
-                href={`/movies/${id}`}
-                to={`/movies/${id}`}
-              >
-                <div className="img-box">
-                  <div className="day-list-vote_average">
-                    {vote_average.toFixed(1)}
-                  </div>
-                  <div className="img-box-backdrop"></div>
-                  <img
-                    className="img"
-                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                    alt=""
-                  />
-                </div>
-                <span className="day-text">{title}</span>
-              </Link>
+            <li className={styles.listItem} key={id}>
+              <MovieCard
+                id={id}
+                moveImage={moveImage}
+                pathname={pathname}
+                search={search}
+                voteAverage={vote_average}
+                posterPath={poster_path}
+                title={title}
+              />
             </li>
           );
         })}

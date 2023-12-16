@@ -1,0 +1,20 @@
+.movie {
+  display: flex;
+  margin-top: 10px;
+  min-height: 489.8px;
+  border-bottom: 1px solid grey;
+}
+
+.movieImg {
+  width: 300px;
+  margin: 25px;
+  transition: all 1s ease-in-out;
+}
+
+.movieBox {
+  border-bottom: 1px solid grey;
+}
+
+.geners {
+  margin-right: 10px;
+}
