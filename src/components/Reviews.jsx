@@ -8,7 +8,8 @@ const Reviews = () => {
 
   useEffect(() => {
     getReviews(movieId).then(el => setReviews(el.data.results));
-  }, []);
+  }, [movieId]);
+
   return (
     <>
       {reviews.length > 0 && (

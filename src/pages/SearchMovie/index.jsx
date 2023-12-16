@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { getMovieByName } from 'API/dafaultApi';
 import SearchInput from 'components/SearchInput';
 import MovieCard from 'components/MovieCard';
-import styles from '../DayFilm/index.module.css'
+import styles from '../DayFilm/index.module.css';
 
 const Movie = () => {
   const [imageNameInput, setImageNameInput] = useState('');
@@ -26,7 +26,7 @@ const Movie = () => {
         setFilmList(el.data.results);
       });
     }
-  }, []);
+  }, [fromQueryString]);
 
   const clearImage = () => {
     setImageNameInput('');

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getDayMovie } from 'API/dafaultApi';
 import MovieCard from 'components/MovieCard';
 import styles from './index.module.css';

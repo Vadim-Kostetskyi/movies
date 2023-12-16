@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Header } from 'components/Header';
 import DayFilm from 'pages/DayFilm';
 import { Suspense, lazy } from 'react';
