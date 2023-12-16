@@ -21,7 +21,7 @@ const MovieInfo = () => {
 
   const userScore = parseInt(vote_average) * 10;
   const { movieId } = useParams();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   useLayoutEffect(() => {
     getMovieById(movieId).then(({ data }) => {
@@ -32,14 +32,12 @@ const MovieInfo = () => {
       setVote_average(data.vote_average);
       setImg(data.poster_path);
     });
-    setOldPath(location.pathname);
-  }, []);
+    setOldPath(pathname);
+  }, [movieId, pathname]);
 
   let navigate = useNavigate();
 
   const goBack = () => {
-    console.log(123);
-    console.log(location);
     navigate(oldPath);
   };
 
