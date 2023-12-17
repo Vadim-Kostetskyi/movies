@@ -30,3 +30,15 @@
   width: 300px;
   transition: all 1s ease-in-out;
 }
+
+.title {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  /* font-size: 25px; */
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgb(107, 103, 103);
+  border-left: 1px solid rgb(107, 103, 103);
+  border-right: 1px solid rgb(107, 103, 103);
+}

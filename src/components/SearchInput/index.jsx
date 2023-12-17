@@ -5,15 +5,15 @@ import styles from './index.module.css';
 const SearchInput = ({
   boxRef,
   onChange,
-  imageName,
+  value,
   clearImage,
   memorizeFilms,
 }) => {
   const handleSubmit = el => {
     el.preventDefault();
 
-    if (imageName) {
-      getMovieByName(imageName).then(el => {
+    if (value) {
+      getMovieByName(value).then(el => {
         console.log(el);
         memorizeFilms(el.data.results);
       });
@@ -21,6 +21,7 @@ const SearchInput = ({
       boxRef.current.classList.add(styles.inputBox);
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.box} ref={boxRef}>
@@ -28,7 +29,7 @@ const SearchInput = ({
           className={styles.input}
           type="text"
           onChange={onChange}
-          value={imageName}
+          value={value}
           placeholder="Search"
         />
         <button className={styles.searchBtn} type="submit">

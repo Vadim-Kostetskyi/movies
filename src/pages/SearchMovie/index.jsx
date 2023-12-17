@@ -1,89 +1,44 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { getMovieByName } from 'API/dafaultApi';
 import SearchInput from 'components/SearchInput';
-import MovieCard from 'components/MovieCard';
+import MovieCards from 'components/MovieCards';
+import { moveImage } from 'helpers';
 import styles from '../DayFilm/index.module.css';
 
-const Movie = () => {
-  const [imageNameInput, setImageNameInput] = useState('');
+const SearchMovie = () => {
+  const [inputValue, setInputValue] = useState('');
   const [filmList, setFilmList] = useState([]);
   const boxRef = useRef(null);
 
-  const { pathname, search } = useLocation();
-  const fromQueryString = search.replace(/\?query=/, '');
-
-  // const path = document.location.href.length;
+  const { pathname } = useLocation();
 
   const inputChange = el => {
     const { value } = el.currentTarget;
-    setImageNameInput(value.toLowerCase());
+    setInputValue(value.toLowerCase());
   };
 
-  useEffect(() => {
-    if (fromQueryString) {
-      getMovieByName(fromQueryString).then(el => {
-        setFilmList(el.data.results);
-      });
-    }
-  }, [fromQueryString]);
-
   const clearImage = () => {
-    setImageNameInput('');
+    setInputValue('');
   };
 
   const memorizeFilms = films => {
     setFilmList(films);
   };
 
-  async function moveImage(el) {
-    console.log(el.currentTarget);
-    el.preventDefault();
-
-    const imgElement = el.currentTarget.querySelector('img');
-    const imgBox =
-      el.currentTarget.getElementsByClassName('img-box-backdrop')[0];
-    const rect = el.currentTarget.getBoundingClientRect();
-    const topOffset = 108.6 - rect.top;
-    const leftOffset = 30 - rect.left;
-
-    document.body.style.overflow = 'hidden';
-    imgElement.style.position = 'relative';
-    imgElement.style.zIndex = '5';
-    imgBox.classList.add('backdrop');
-
-    imgElement.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
-  }
-
   return (
     <div>
       <SearchInput
         boxRef={boxRef}
         onChange={inputChange}
-        imageName={imageNameInput}
+        value={inputValue}
         clearImage={clearImage}
         memorizeFilms={memorizeFilms}
       />
-      {filmList.length > 0 ? (
-        <ul className={styles.list}>
-          {filmList.map(({ original_title, id, poster_path, vote_average }) => (
-            <li key={id} className={styles.listItem}>
-              <MovieCard
-                id={id}
-                moveImage={moveImage}
-                pathname={pathname}
-                search={search}
-                voteAverage={vote_average}
-                posterPath={poster_path}
-                title={original_title}
-              />
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <MovieCards list={filmList} moveImage={moveImage} pathname={pathname} />
+      {filmList.length > 0 ? <ul className={styles.list}></ul> : null}
       <Outlet />
     </div>
   );
 };
 
-export default Movie;
+export default SearchMovie;

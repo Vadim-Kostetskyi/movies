@@ -109,18 +109,6 @@ form {
   transition: all 1s ease-in-out;
 } */
 
-.day-text {
-  text-align: center;
-  color: white;
-  font-size: 12px;
-  /* font-size: 25px; */
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgb(107, 103, 103);
-  border-left: 1px solid rgb(107, 103, 103);
-  border-right: 1px solid rgb(107, 103, 103);
-}
-
 .active {
   color: yellow;
   text-shadow:

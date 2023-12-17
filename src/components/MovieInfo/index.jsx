@@ -1,12 +1,6 @@
 import { getMovieById } from 'API/dafaultApi';
-import { useLayoutEffect, useState } from 'react';
-import {
-  Link,
-  useParams,
-  Outlet,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams, Outlet } from 'react-router-dom';
 import { PathById, PathToImage } from 'API';
 import styles from './index.module.css';
 
@@ -16,14 +10,12 @@ const MovieInfo = () => {
   const [genres, setGenres] = useState([]);
   const [vote_average, setVote_average] = useState([]);
   const [img, setImg] = useState('');
-  const [oldPath, setOldPath] = useState('');
   const [date, setDate] = useState(0);
 
   const userScore = parseInt(vote_average) * 10;
   const { movieId } = useParams();
-  const { pathname } = useLocation();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getMovieById(movieId).then(({ data }) => {
       setDate(data.release_date.slice(0, 4));
       setTitle(data.title);
@@ -32,18 +24,15 @@ const MovieInfo = () => {
       setVote_average(data.vote_average);
       setImg(data.poster_path);
     });
-    setOldPath(pathname);
-  }, [movieId, pathname]);
+  }, [movieId]);
 
-  let navigate = useNavigate();
-
-  const goBack = () => {
-    navigate(oldPath);
-  };
+  // const goBack = () => {
+  //   navigate(pathname - 1);
+  // };
 
   return (
     <>
-      <button onClick={goBack}>Go back</button>
+      {/* <button onClick={goBack}>Go back</button> */}
       <div className={styles.movie}>
         <img
           className={styles.movieImg}
